@@ -84,6 +84,7 @@ public class ChampionGuideApp {
         input.nextLine();
         Champion newChampion = new Champion(championName, difficulty);
         newChampion.editChampionInfo(championDescription);
+        champions.addChampion(newChampion);
 
         System.out.println("New Champion Added to Collection to View. To add its interactions with other champions, "
                 + "press e.");
@@ -125,7 +126,3 @@ public class ChampionGuideApp {
         System.out.println(champions.listAvailableChampions());
     }
 }
-
-
-
-

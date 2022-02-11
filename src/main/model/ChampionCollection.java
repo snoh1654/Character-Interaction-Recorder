@@ -35,10 +35,9 @@ public class ChampionCollection {
     public String listAvailableChampions() {
         String listOfNames = "";
         for (Champion champion : this.championsGuide) {
-            listOfNames = listOfNames + champion.getName() + ", ";
+            listOfNames = listOfNames + ", " + champion.getName();
         }
-    //    int stringEnd = listOfNames.length() - 2;
-        return listOfNames;//.substring(0, stringEnd);
+        return listOfNames.substring(2);
     }
 
     // EFFECTS: returns the name, difficulty, general information and interactions with other champions of this champion
