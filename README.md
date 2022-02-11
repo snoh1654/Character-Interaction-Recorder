@@ -8,8 +8,8 @@ characters in the game- from the 150 in the game's cast. The goal of the game is
 enemy team's base. However, the game becomes quite complex due to the small, unique
 interactions between champions. Therefore, it is quite daunting for beginners to approach this game
 and even experienced players. Therefore, this application will attempt to assist these players.
-This application will accomplish this goal by allowing its user to record Champion information, interactions, and
-other information that will help them when they play the game. In this application, the user will
+This application will accomplish this goal by allowing its user to record a Champion's information, difficulty, and
+interaction with other champions as this will help them when they play the game. In this application, the user will
 be able to have a collection of champions that they can select to retrieve information related to them.
 
 This application will be a helpful tool to everyone who plays *LoL*, which

@@ -61,8 +61,7 @@ public class Champion {
         for (OpposingChampion opposingChampion : this.interactionList) {
             championInteractions = championInteractions + opposingChampion.toString() + "\n\n";
         }
-        int stringLength = championInteractions.length() - 2;
-        return championInteractions.substring(0, stringLength);
+        return championInteractions;
     }
 
     // MODIFIES: this

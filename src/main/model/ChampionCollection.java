@@ -31,13 +31,56 @@ public class ChampionCollection {
         return "That Champion is not in the Collection.";
     }
 
+    // MODIFIES: this
+    // EFFECTS: if Champion with championName is in the collection, change its information to newInfo and return
+    // "championName's information was changed." Otherwise, return "That champion does not exist in the collection."
+    public String changeChampionInfo(String championName, String newInfo) {
+        for (Champion champion : this.championsGuide) {
+            if (champion.getName().equals(championName)) {
+                champion.editChampionInfo(newInfo);
+                return championName + "'s information was changed.";
+            }
+        }
+        return "That Champion does not exist in the collection.";
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if a champion called championName exists within the collection, add information about its interaction
+    //          with the inputted opposing champion and return "Added new Interaction Information for championName."
+    //          Otherwise, return "championName does not exist in the collection."
+    public String createChampionInteraction(String championName, OpposingChampion opposingChampion) {
+        for (Champion champion : this.championsGuide) {
+            if (champion.getName().equals(championName)) {
+                champion.addChampionInteraction(opposingChampion);
+                return "Added new Interaction Information for " + championName + ".";
+            }
+        }
+        return championName + " does not exist in the collection.";
+    }
+
+    // MODIFIES: this
+    // EFFECTS: change champion called championName's interaction information with an opposing Champion named
+    //          opposingChampionName to newInteractionInfo and produce "Interaction Information Changed." Otherwise,
+    //          return, "Either the championName or opposingChampionName does not exist."
+
+    public String changeChampionInteraction(String championName, String opposingChampionName, String newInfo) {
+        for (Champion champion: this.championsGuide) {
+            if (champion.getName().equals(championName)) {
+                champion.editChampionInteraction(opposingChampionName, newInfo);
+                return "Interaction Information Changed.";
+            }
+        }
+        return "Either the Champion or Opposing Champion does not exist.";
+    }
+
+
     // EFFECTS: returns the name of all Champions in the collection
     public String listAvailableChampions() {
         String listOfNames = "";
         for (Champion champion : this.championsGuide) {
-            listOfNames = listOfNames + ", " + champion.getName();
+            listOfNames = listOfNames + champion.getName() + ", ";
         }
-        return listOfNames.substring(2);
+        return listOfNames;
     }
 
     // EFFECTS: returns the name, difficulty, general information and interactions with other champions of this champion
@@ -47,7 +90,7 @@ public class ChampionCollection {
             if (champion.getName().equals(championName)) {
                 championInfo = championName + "\nDifficulty: " + champion.getDifficulty()
                         + "\nInfo: " + champion.getChampionInfo()
-                        + "\nInteractions with Other Champions:\n"
+                        + "\nInteractions with Other Champions:\n\n"
                         + champion.viewChampionInteraction();
                 return championInfo;
             }

@@ -52,9 +52,13 @@ public class ChampionGuideApp {
             removeChampion();
         } else if (command.equals("e")) {
             editChampionInfo();
+        } else if (command.equals("c")) {
+            addChampionInteraction();
+        } else if (command.equals("m")) {
+            modifyChampionInteraction();
         } else if (command.equals("v")) {
             viewChampionInfo();
-        } else if (command.equals("c")) {
+        } else if (command.equals("l")) {
             checkAvailableChampions();
         } else {
             System.out.println("Selection not valid...");
@@ -66,9 +70,11 @@ public class ChampionGuideApp {
         System.out.println("\nSelect from:");
         System.out.println("\t a -> add Champion");
         System.out.println("\t r -> remove Champion");
-        System.out.println("\t e -> edit a Champion's Info ");
+        System.out.println("\t e -> edit a Champion's Information");
+        System.out.println("\t c -> add information about a Champion's interaction with an opposing Champion");
+        System.out.println("\t m -> modify information regarding a Champion's interaction with an opposing Champion");
         System.out.println("\t v -> view Champion Info");
-        System.out.println("\t c -> check list of added champions");
+        System.out.println("\t l -> check list of added champions");
         System.out.println("\t q -> quit");
     }
 
@@ -109,12 +115,41 @@ public class ChampionGuideApp {
     // MODIFIES: this
     // EFFECTS: edits a champion's information
     private void editChampionInfo() {
+        System.out.println("Enter the name of the Champion that you want to edit.");
+        String championName = input.nextLine();
+        System.out.println("Enter what you want to change " + championName + "'s information to.");
+        String newInfo = input.nextLine();
+        System.out.println(champions.changeChampionInfo(championName, newInfo));
+    }
 
+    // MODIFIES: this
+    // EFFECTS: adds a champion's interaction with an opposing champion
+    private void addChampionInteraction() {
+        System.out.println("Enter the name of the Champion you want to add interaction information to.");
+        String championName = input.nextLine();
+        System.out.println("Enter the name of the Opposing Champion.");
+        String opposingChampionName = input.nextLine();
+        System.out.println("Enter the difficulty rating playing against the Opposing Champion from a scale of 1-10.");
+        int difficulty = input.nextInt();
+        input.nextLine();
+        OpposingChampion newOpposingChampion = new OpposingChampion(opposingChampionName, difficulty);
+        System.out.println(champions.createChampionInteraction(championName, newOpposingChampion));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: edits a champion's interaction with an opposing champion
+    private void modifyChampionInteraction() {
+        System.out.println("Enter the name of the Champion that you want to modify.");
+        String championName = input.nextLine();
+        System.out.println("Enter the name of the Opposing Champion.");
+        String opposingChampionName = input.nextLine();
+        System.out.println("Enter the new interaction information between the champion and its opposition.");
+        String newInteractionInfo = input.nextLine();
+        System.out.println(champions.changeChampionInteraction(championName, opposingChampionName, newInteractionInfo));
     }
 
     // EFFECTS: shows information about a champion
     private void viewChampionInfo() {
-        System.out.println(champions.listAvailableChampions());
         System.out.println("Please precisely write the name of the Champion you want to view.");
         String championName = input.nextLine();
         System.out.println(champions.viewChampion(championName));

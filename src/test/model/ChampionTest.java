@@ -54,6 +54,8 @@ class ChampionTest {
         assertFalse(editedChampion.getInteractionList().isEmpty());
     }
 
+
+
     @Test
     void editChampionInteractionWorkingTest() {
         assertEquals(opposingChampion, editedChampion.getInteractionList().get(0));
@@ -77,7 +79,7 @@ class ChampionTest {
     @Test
     void getChampionInteractionTest() {
         assertEquals("Opposing Champion Tester\nDifficulty to Face: 6\nInteraction Details: \n\n" +
-                "Opposing Champion Tester 2\nDifficulty to Face: 9\nInteraction Details: ",
+                "Opposing Champion Tester 2\nDifficulty to Face: 9\nInteraction Details: \n\n",
                 championWithTwoOpposingInfo.viewChampionInteraction());
     }
 
