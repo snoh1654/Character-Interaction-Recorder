@@ -37,10 +37,11 @@ public class ChampionCollection {
         for (Champion champion : this.championsGuide) {
             listOfNames = listOfNames + champion.getName() + ", ";
         }
-        int stringEnd = listOfNames.length() - 2;
-        return listOfNames.substring(0, stringEnd);
+    //    int stringEnd = listOfNames.length() - 2;
+        return listOfNames;//.substring(0, stringEnd);
     }
 
+    // EFFECTS: returns the name, difficulty, general information and interactions with other champions of this champion
     public String viewChampion(String championName) {
         String championInfo = "That Champion is not in the Collection.";
         for (Champion champion : championsGuide) {
@@ -55,6 +56,7 @@ public class ChampionCollection {
         return championInfo;
     }
 
+    // EFFECTS: returns collection of Champions
     public ArrayList<Champion> getChampionsGuide() {
         return championsGuide;
     }
