@@ -3,8 +3,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ChampionCollectionTest {
@@ -28,10 +26,10 @@ public class ChampionCollectionTest {
         bigCollection.addChampion(champion2);
         opposingChampion = new OpposingChampion("Opposing Champion Tester", 6);
         opposingChampion2 = new OpposingChampion("Opposing Champion Tester 2", 9);
-        opposingChampion.editInteractionDetail("Testing!");
+        opposingChampion.setInteractionDetail("Testing!");
         champion2.addChampionInteraction(opposingChampion);
         champion2.addChampionInteraction(opposingChampion2);
-        champion2.editChampionInfo("Not Much Yet!");
+        champion2.setChampionInfo("Not Much Yet!");
     }
 
     @Test

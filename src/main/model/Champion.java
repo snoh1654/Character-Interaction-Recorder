@@ -11,8 +11,9 @@ public class Champion {
     private String info;
     private ArrayList<OpposingChampion> interactionList;
 
+    // REQUIRES: 1 >= difficulty >= 10
     // EFFECTS: Constructs a champion with given name and difficulty and an empty section for its information and
-    // interaction with other champions
+    //          interaction with other champions
     public Champion(String name, int difficulty) {
         this.name = name;
         this.difficulty = difficulty;
@@ -20,7 +21,6 @@ public class Champion {
         this.interactionList = new ArrayList<>();
     }
 
-    // REQUIRES: opposingChampion's interactions with this champion is not already documented
     // MODIFIES: this
     // EFFECTS: Adds new info about the champion's interactions with another opposing champion
     public void addChampionInteraction(OpposingChampion opposingChampion) {
@@ -48,7 +48,7 @@ public class Champion {
     public String editChampionInteraction(String opposingChampionName, String addedInfo) {
         for (OpposingChampion opposingChampion : this.interactionList) {
             if (opposingChampion.getName().equals(opposingChampionName)) {
-                opposingChampion.editInteractionDetail(addedInfo);
+                opposingChampion.setInteractionDetail(addedInfo);
                 return "Updated Interaction List.";
             }
         }
@@ -66,7 +66,7 @@ public class Champion {
 
     // MODIFIES: this
     // EFFECTS: changes Champion's information into newInfo
-    public void editChampionInfo(String newInfo) {
+    public void setChampionInfo(String newInfo) {
         this.info = newInfo;
     }
 

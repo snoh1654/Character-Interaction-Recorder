@@ -37,7 +37,7 @@ public class ChampionCollection {
     public String changeChampionInfo(String championName, String newInfo) {
         for (Champion champion : this.championsGuide) {
             if (champion.getName().equals(championName)) {
-                champion.editChampionInfo(newInfo);
+                champion.setChampionInfo(newInfo);
                 return championName + "'s information was changed.";
             }
         }

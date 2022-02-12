@@ -6,12 +6,13 @@ import model.OpposingChampion;
 
 import java.util.Scanner;
 
-public class ChampionGuideApp {
+// Application containing information about Champions from League of Legends
+public class ChampionsGuideApp {
     private Scanner input;
     private ChampionCollection champions;
 
-    // EFFECTS: runs the Champion Guide application
-    public ChampionGuideApp() {
+    // EFFECTS: runs the Champions Guide application
+    public ChampionsGuideApp() {
         runChampionGuide();
     }
 
@@ -89,7 +90,7 @@ public class ChampionGuideApp {
         int difficulty = input.nextInt();
         input.nextLine();
         Champion newChampion = new Champion(championName, difficulty);
-        newChampion.editChampionInfo(championDescription);
+        newChampion.setChampionInfo(championDescription);
         champions.addChampion(newChampion);
 
         System.out.println("New Champion Added to Collection to View. To add its interactions with other champions, "

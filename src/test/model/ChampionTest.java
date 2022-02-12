@@ -86,7 +86,7 @@ class ChampionTest {
     @Test
     void editChampionInfoTest() {
         assertEquals("", editedChampion.getChampionInfo());
-        editedChampion.editChampionInfo("Test Champion 2 is a character in League of Legends.");
+        editedChampion.setChampionInfo("Test Champion 2 is a character in League of Legends.");
         assertEquals("Test Champion 2 is a character in League of Legends.", editedChampion.getChampionInfo());
     }
 

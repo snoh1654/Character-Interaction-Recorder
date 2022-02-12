@@ -7,6 +7,7 @@ public class OpposingChampion {
     private final int difficultyToPlayAgainst;
     private String interactionDetail;
 
+    // REQUIRES: 1 >= difficultyToPlayAgainst <= 10
     // EFFECTS: Constructs an opposing champion with given name and rating that rates how difficult it is to play
     // against and an empty section on the details about its interaction with the user's champion.
     public OpposingChampion(String name, int difficultyToPlayAgainst) {
@@ -17,7 +18,7 @@ public class OpposingChampion {
 
     // MODIFIES: this
     // EFFECTS: interaction of OpposingChampion with user's champion is changed to newInteractionDetail
-    public void editInteractionDetail(String newInteractionDetail) {
+    public void setInteractionDetail(String newInteractionDetail) {
         this.interactionDetail = newInteractionDetail;
     }
 

@@ -11,13 +11,13 @@ public class OpposingChampionTest {
     @BeforeEach
     void setup() {
         opposingChampion = new OpposingChampion("Testing Character", 5);
-        opposingChampion.editInteractionDetail("Not much to say...");
+        opposingChampion.setInteractionDetail("Not much to say...");
     }
 
     @Test
     void editInteractionTest() {
         assertEquals("Not much to say...", opposingChampion.getInteractionDetail());
-        opposingChampion.editInteractionDetail("Testing Character is strong against chosen character");
+        opposingChampion.setInteractionDetail("Testing Character is strong against chosen character");
         assertEquals("Testing Character is strong against chosen character", opposingChampion.getInteractionDetail());
     }
 
