@@ -27,6 +27,10 @@ the user to edit their own information would be very helpful to me and some of m
 
 - As a user, I want to be able to add information about a new champion to my collection of champion information
 - As a user, I want to be able to delete information about a champion from my collection of champion information
+- As a user, I want to be able to get a warning message prior to deleting the champion from my collection
 - As a user, I want to be able to update information that I previously added to my collection of champion information
 - As a user, I want to be able to read the information that I have written about a champion
 - As a user, I want to be able to view the available champions in my collection of champion information
+- As a user, I want to be able to save my Champion Collection
+- As a user, I want to be able to load and resume writing or viewing my Champion Collection
+- As a user, I want to be reminded to save the Champion Collection prior to exiting it
