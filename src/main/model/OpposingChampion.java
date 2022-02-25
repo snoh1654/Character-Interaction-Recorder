@@ -1,8 +1,11 @@
 package model;
+
+import org.json.JSONObject;
+import persistence.JsonCreator;
+
 // An opposing champion that the user's champion compares itself to. It contains its name, difficulty to play against,
 // and information about how it interacts with the user's champion.
-
-public class OpposingChampion {
+public class OpposingChampion implements JsonCreator {
     private final String name;
     private final int difficultyToPlayAgainst;
     private String interactionDetail;
@@ -41,5 +44,14 @@ public class OpposingChampion {
     public String toString() {
         return name + "\nDifficulty to Face: " + difficultyToPlayAgainst + "\nInteraction Details: "
                 + interactionDetail;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Opposing Champion Name", this.name);
+        jsonObject.put("Difficulty To Play Against", this.difficultyToPlayAgainst);
+        jsonObject.put("Interaction Detail", this.interactionDetail);
+        return jsonObject;
     }
 }

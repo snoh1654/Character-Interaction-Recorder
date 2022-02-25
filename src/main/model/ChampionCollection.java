@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.JsonCreator;
+
 import java.util.ArrayList;
 // A collection of champions that the user can find information about.
 
-public class ChampionCollection {
+public class ChampionCollection implements JsonCreator {
     private ArrayList<Champion> championsGuide;
 
     // EFFECTS: Constructs an empty champion collection
@@ -101,5 +105,23 @@ public class ChampionCollection {
     // EFFECTS: returns collection of Champions
     public ArrayList<Champion> getChampionsGuide() {
         return championsGuide;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Champions Guide", championToJson());
+        return jsonObject;
+    }
+
+    // EFFECTS: returns championsGuide as a JSON array
+    public JSONArray championToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Champion c : this.championsGuide) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 }

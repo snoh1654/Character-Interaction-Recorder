@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.JsonCreator;
+
 import java.util.ArrayList;
 
 // A champion with a name, difficulty rating, information about itself, and a compilation of information about
 // its interaction with other champions.
-
-public class Champion {
+public class Champion implements JsonCreator {
     private final String name;
     private final int difficulty;
     private String info;
@@ -88,5 +91,26 @@ public class Champion {
     // EFFECTS: returns champion's list of interactions with opposing champions
     public ArrayList<OpposingChampion> getInteractionList() {
         return interactionList;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Champion Name", this.name);
+        jsonObject.put("Difficulty", this.difficulty);
+        jsonObject.put("Champion Information", this.info);
+        jsonObject.put("Interaction With Other Champions", interactionListToJson());
+        return jsonObject;
+    }
+
+    // EFFECTS: returns interactionList as a JSON array
+    public JSONArray interactionListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (OpposingChampion op : this.interactionList) {
+            jsonArray.put(op.toJson());
+        }
+
+        return jsonArray;
     }
 }

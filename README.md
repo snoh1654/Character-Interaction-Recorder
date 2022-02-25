@@ -33,4 +33,3 @@ the user to edit their own information would be very helpful to me and some of m
 - As a user, I want to be able to view the available champions in my collection of champion information
 - As a user, I want to be able to save my Champion Collection
 - As a user, I want to be able to load and resume writing or viewing my Champion Collection
-- As a user, I want to be reminded to save the Champion Collection prior to exiting it

@@ -3,21 +3,29 @@ package ui;
 import model.Champion;
 import model.ChampionCollection;
 import model.OpposingChampion;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Application containing information about Champions from League of Legends
 public class ChampionsGuideApp {
+    private static final String JSON_LOCATION = "./data/championsGuide.json";
+
     private Scanner input;
     private ChampionCollection champions;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the Champions Guide application
-    public ChampionsGuideApp() {
+    public ChampionsGuideApp() throws FileNotFoundException {
         runChampionGuide();
     }
 
     // MODIFIES: this
-    private void runChampionGuide() {
+    private void runChampionGuide() throws FileNotFoundException {
         boolean keepGoing = true;
         String command;
 
@@ -39,9 +47,11 @@ public class ChampionsGuideApp {
 
     // MODIFIES: this
     // EFFECTS: initializes the scanner and Champion Collection
-    private void init() {
+    private void init() throws FileNotFoundException {
         input = new Scanner(System.in);
         champions = new ChampionCollection();
+        jsonWriter = new JsonWriter(JSON_LOCATION);
+        jsonReader = new JsonReader(JSON_LOCATION);
     }
 
     // MODIFIES: this
@@ -59,8 +69,12 @@ public class ChampionsGuideApp {
             modifyChampionInteraction();
         } else if (command.equals("v")) {
             viewChampionInfo();
-        } else if (command.equals("l")) {
+        } else if (command.equals("t")) {
             checkAvailableChampions();
+        } else if (command.equals("s")) {
+            saveChampionsGuide();
+        } else if (command.equals("l")) {
+            loadChampionsGuide();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -75,7 +89,9 @@ public class ChampionsGuideApp {
         System.out.println("\t c -> add information about a Champion's interaction with an opposing Champion");
         System.out.println("\t m -> modify information regarding a Champion's interaction with an opposing Champion");
         System.out.println("\t v -> view Champion Info");
-        System.out.println("\t l -> check list of added champions");
+        System.out.println("\t t -> check list of added champions");
+        System.out.println("\t s -> save Champions Guide");
+        System.out.println("\t l -> load Champions Guide");
         System.out.println("\t q -> quit");
     }
 
@@ -160,5 +176,28 @@ public class ChampionsGuideApp {
     private void checkAvailableChampions() {
         System.out.println("List of Available Options:");
         System.out.println(champions.listAvailableChampions());
+    }
+
+    // EFFECTS: saves the champions guide to file at JSON_LOCATION
+    private void saveChampionsGuide() {
+        try {
+            jsonWriter.begin();
+            jsonWriter.write(champions);
+            jsonWriter.close();
+            System.out.println("Saved Champion Guide to " + JSON_LOCATION);
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist at that location");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads champions guide from file at JSON_LOCATION
+    private void loadChampionsGuide() {
+        try {
+            this.champions = jsonReader.read();
+            System.out.println("Loaded Champions Guide from " + JSON_LOCATION);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file at " + JSON_LOCATION);
+        }
     }
 }
