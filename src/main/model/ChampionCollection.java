@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import persistence.JsonCreator;
 
 import java.util.ArrayList;
-import java.util.List;
 // A collection of champions that the user can find information about.
 
 public class ChampionCollection implements JsonCreator {

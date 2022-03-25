@@ -27,6 +27,9 @@ public class AppFrame extends JFrame implements ActionListener {
     private JButton removeChampion;
     private JButton saveInfo;
     private JButton loadInfo;
+    private JPanel savedStatusInfo;
+    private JLabel savedStatus;
+
 
     public AppFrame() throws FileNotFoundException {
         champions = new ChampionCollection();
@@ -48,6 +51,7 @@ public class AppFrame extends JFrame implements ActionListener {
         initRemoveButton();
         initSaveButton();
         initLoadButton();
+        initStatus();
     }
 
     private void initTable() {
@@ -65,7 +69,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
     private void initAddButton() {
         addChampion = new JButton("Add Champion");
-        addChampion.setBounds(0, 0, 250, 250);
+        addChampion.setBounds(0, 0, 200, 250);
         addChampion.addActionListener(this);
         addChampion.setBackground(new Color(0xE74646));
         addChampion.setFocusable(false);
@@ -74,7 +78,7 @@ public class AppFrame extends JFrame implements ActionListener {
 
     private void initRemoveButton() {
         removeChampion = new JButton("Remove Champion");
-        removeChampion.setBounds(250,0,250,250);
+        removeChampion.setBounds(200,0,200,250);
         removeChampion.addActionListener(this);
         removeChampion.setBackground(new Color(0xE0D849));
         addChampion.setFocusable(false);
@@ -83,22 +87,55 @@ public class AppFrame extends JFrame implements ActionListener {
 
     private void initSaveButton() {
         saveInfo = new JButton("Save");
-        saveInfo.setBounds(500, 0, 250, 250);
+        saveInfo.setBounds(400, 0, 200, 250);
         saveInfo.addActionListener(this);
-        saveInfo.setBackground(new Color(0xF372F3));
+        saveInfo.setBackground(new Color(0x7E7ED5));
         saveInfo.setFocusable(false);
         this.add(saveInfo);
     }
 
     private void initLoadButton() {
         loadInfo = new JButton("Load");
-        loadInfo.setBounds(750, 0, 250, 250);
+        loadInfo.setBounds(600, 0, 200, 250);
         loadInfo.addActionListener(this);
-        loadInfo.setBackground(new Color(0x7E7ED5));
+        loadInfo.setBackground(new Color(0xF372F3));
         loadInfo.setFocusable(false);
         this.add(loadInfo);
     }
 
+    private void initStatus() {
+        savedStatusInfo = new JPanel();
+        this.add(savedStatusInfo);
+        savedStatusInfo.setBounds(800,0,200,250);
+        savedStatusInfo.setBackground(new Color(0xD2D2D2));
+        savedStatusInfo.setLayout(new BorderLayout());
+        savedStatus = new JLabel();
+        savedStatusInfo.add(savedStatus);
+        setSavedStatus();
+    }
+
+    private void setSavedStatus() {
+        savedStatus.setText("Saved");
+        savedStatus.setIcon(new ImageIcon("./data/saved.png"));
+        setUpImage(savedStatus);
+        savedStatus.setForeground(new Color(0x48AD5A));
+        savedStatus.setFont(new Font("Arial", Font.PLAIN,12));
+    }
+
+    private void setNotSavedStatus() {
+        savedStatus.setText("Not Saved");
+        savedStatus.setIcon(new ImageIcon("./data/notSaved.png"));
+        setUpImage(savedStatus);
+        savedStatus.setForeground(new Color(0xC72929));
+        savedStatus.setFont(new Font("Arial", Font.PLAIN,12));
+    }
+
+    private void setUpImage(JLabel label) {
+        label.setHorizontalTextPosition(JLabel.RIGHT);
+        label.setVerticalTextPosition(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setVerticalAlignment(JLabel.CENTER);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -125,14 +162,17 @@ public class AppFrame extends JFrame implements ActionListener {
         Champion addingChampion = new Champion(championName, Integer.parseInt(championDifficulty));
         addingChampion.setChampionInfo(championInfo);
         champions.addChampion(addingChampion);
+
+        setNotSavedStatus();
     }
 
     private void doRemove() {
         String championName = JOptionPane.showInputDialog(null, "Enter Champion Name");
         for (int i = 0; i < tableModel.getRowCount(); i++) {
-            if (championName.equals(tableModel.getValueAt(i, 0))) {
+            if (championName.equals(tableModel.getValueAt(i, 0).toString())) {
+                champions.removeChampion(tableModel.getValueAt(i, 0).toString());
                 tableModel.removeRow(i);
-                champions.removeChampion((String)tableModel.getValueAt(i, 0));
+                setNotSavedStatus();
                 break;
             }
         }
@@ -143,6 +183,7 @@ public class AppFrame extends JFrame implements ActionListener {
             jsonWriter.begin();
             jsonWriter.write(champions);
             jsonWriter.close();
+            setSavedStatus();
         } catch (FileNotFoundException ex) {
             // NOT SAVED
         }
@@ -157,6 +198,7 @@ public class AppFrame extends JFrame implements ActionListener {
                 tableModel.setValueAt(champions.getChampionsGuide().get(i).getDifficulty(), i, 1);
                 tableModel.setValueAt(champions.getChampionsGuide().get(i).getChampionInfo(), i, 2);
             }
+            setSavedStatus();
         } catch (IOException ex) {
             // FAILED TO LOAD
         }
