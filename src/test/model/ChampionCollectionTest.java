@@ -112,8 +112,13 @@ public class ChampionCollectionTest {
     }
 
     @Test
+    void listAvailableChampionsNoneTest() {
+        assertEquals("", emptyCollection.listAvailableChampions());
+    }
+
+    @Test
     void listAvailableChampionsTest() {
-        assertEquals("Test Champion, Test Champion 2, ", bigCollection.listAvailableChampions());
+        assertEquals("Test Champion, Test Champion 2", bigCollection.listAvailableChampions());
     }
 
     @Test
