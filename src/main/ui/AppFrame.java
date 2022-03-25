@@ -15,7 +15,6 @@ import java.io.IOException;
 
 // The JFrame used for the GUI of ChampionCollection
 public class AppFrame extends JFrame implements ActionListener {
-
     private static final String JSON_LOCATION = "./data/championsGuideGUI.json";
 
     private ChampionCollection champions;
@@ -30,7 +29,7 @@ public class AppFrame extends JFrame implements ActionListener {
     private JPanel savedStatusInfo;
     private JLabel savedStatus;
 
-
+    // EFFECTS: runs the GUI for the Champion Collection
     public AppFrame() throws FileNotFoundException {
         champions = new ChampionCollection();
         jsonWriter = new JsonWriter(JSON_LOCATION);
@@ -45,6 +44,8 @@ public class AppFrame extends JFrame implements ActionListener {
         initComponents();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the frame and components
     private void initComponents() {
         initTable();
         initAddButton();
@@ -54,6 +55,8 @@ public class AppFrame extends JFrame implements ActionListener {
         initStatus();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the table of champion information
     private void initTable() {
         tableModel = new DefaultTableModel();
         table = new JTable(tableModel);
@@ -66,7 +69,8 @@ public class AppFrame extends JFrame implements ActionListener {
         scrollPane.setBackground(new Color(0x735DD0));
         this.add(scrollPane);
     }
-
+    // MODIFIES: this
+    // EFFECTS: initializes the Add Champion button
     private void initAddButton() {
         addChampion = new JButton("Add Champion");
         addChampion.setBounds(0, 0, 200, 250);
@@ -76,6 +80,8 @@ public class AppFrame extends JFrame implements ActionListener {
         this.add(addChampion);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the Remove Champion button
     private void initRemoveButton() {
         removeChampion = new JButton("Remove Champion");
         removeChampion.setBounds(200,0,200,250);
@@ -85,6 +91,8 @@ public class AppFrame extends JFrame implements ActionListener {
         this.add(removeChampion);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the Save button
     private void initSaveButton() {
         saveInfo = new JButton("Save");
         saveInfo.setBounds(400, 0, 200, 250);
@@ -94,6 +102,8 @@ public class AppFrame extends JFrame implements ActionListener {
         this.add(saveInfo);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the Load button
     private void initLoadButton() {
         loadInfo = new JButton("Load");
         loadInfo.setBounds(600, 0, 200, 250);
@@ -103,6 +113,8 @@ public class AppFrame extends JFrame implements ActionListener {
         this.add(loadInfo);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the current Save Status
     private void initStatus() {
         savedStatusInfo = new JPanel();
         this.add(savedStatusInfo);
@@ -114,6 +126,8 @@ public class AppFrame extends JFrame implements ActionListener {
         setSavedStatus();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the Save status to Saved
     private void setSavedStatus() {
         savedStatus.setText("Saved");
         savedStatus.setIcon(new ImageIcon("./data/saved.png"));
@@ -122,6 +136,8 @@ public class AppFrame extends JFrame implements ActionListener {
         savedStatus.setFont(new Font("Arial", Font.PLAIN,12));
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the Save status to Not Saved
     private void setNotSavedStatus() {
         savedStatus.setText("Not Saved");
         savedStatus.setIcon(new ImageIcon("./data/notSaved.png"));
@@ -130,6 +146,8 @@ public class AppFrame extends JFrame implements ActionListener {
         savedStatus.setFont(new Font("Arial", Font.PLAIN,12));
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the alignment of the Save status label
     private void setUpImage(JLabel label) {
         label.setHorizontalTextPosition(JLabel.RIGHT);
         label.setVerticalTextPosition(JLabel.CENTER);
@@ -137,6 +155,8 @@ public class AppFrame extends JFrame implements ActionListener {
         label.setVerticalAlignment(JLabel.CENTER);
     }
 
+    // MODIFIES: this
+    // EFFECTS: associates the buttons with a mouse click
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addChampion) {
@@ -150,6 +170,8 @@ public class AppFrame extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a champion to the champion collection and the table
     private void doAdd() {
         String championName = JOptionPane.showInputDialog(null, "Enter Champion Name");
         String championDifficulty = JOptionPane.showInputDialog(null,
@@ -166,6 +188,8 @@ public class AppFrame extends JFrame implements ActionListener {
         setNotSavedStatus();
     }
 
+    // MODIFIES: this
+    // EFFECTS: if inputted champion is in the table, removes that  champion from the champion collection and the table,
     private void doRemove() {
         String championName = JOptionPane.showInputDialog(null, "Enter Champion Name");
         for (int i = 0; i < tableModel.getRowCount(); i++) {
@@ -178,6 +202,7 @@ public class AppFrame extends JFrame implements ActionListener {
         }
     }
 
+    // EFFECTS: saves a JSON file of the current ChampionCollection at JSON_LOCATION
     private void doSave() {
         try {
             jsonWriter.begin();
@@ -189,6 +214,8 @@ public class AppFrame extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads a JSON files of ChampionCollection from JSON_LOCATION
     private void doLoad() {
         try {
             this.champions = jsonReader.read();

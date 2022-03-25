@@ -33,3 +33,10 @@ the user to edit their own information would be very helpful to me and some of m
 - As a user, I want to be able to view the available champions in my collection of champion information
 - As a user, I want to be able to save my Champion Collection
 - As a user, I want to be able to load and resume writing or viewing my Champion Collection
+
+## User Stories for GUI
+- As a user, I want to be able to add a Champion to my collection of champion information
+- As a user, I want to be able to remove a Champion from my collection of champion information
+- As a user, I want to be able to see a visual of all the champions that I added to my collection
+- As a user, I want to be able to save my collection of champion information
+- As a user, I want to be able to load my previous collection of champion information
