@@ -2,10 +2,11 @@ package ui;
 
 import java.io.FileNotFoundException;
 
-public class Main {
+// Main Class used to run the GUI
+public class MainGui {
     public static void main(String[] args) {
         try {
-            new ChampionsGuideApp();
+            new AppFrame();
         } catch (FileNotFoundException e) {
             System.out.println("Error. File location cannot be found.");
         }

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import persistence.JsonCreator;
 
 import java.util.ArrayList;
+import java.util.List;
 // A collection of champions that the user can find information about.
 
 public class ChampionCollection implements JsonCreator {
@@ -83,6 +84,9 @@ public class ChampionCollection implements JsonCreator {
         String listOfNames = "";
         for (Champion champion : this.championsGuide) {
             listOfNames = listOfNames + champion.getName() + ", ";
+        }
+        if (listOfNames.length() >= 1) {
+            return listOfNames.substring(0, listOfNames.length() - 2);
         }
         return listOfNames;
     }
