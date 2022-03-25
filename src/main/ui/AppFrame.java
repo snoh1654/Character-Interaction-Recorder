@@ -31,18 +31,19 @@ public class AppFrame extends JFrame implements ActionListener {
 
     // EFFECTS: runs the GUI for the Champion Collection
     public AppFrame() throws FileNotFoundException {
+        super("Champion Guide");
+
         champions = new ChampionCollection();
         jsonWriter = new JsonWriter(JSON_LOCATION);
         jsonReader = new JsonReader(JSON_LOCATION);
 
-        this.setTitle("Champion Guide");
+        initComponents();
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
         this.setLayout(null);
         this.setSize(1000, 1000);
         this.setResizable(false);
-
-        initComponents();
+        this.setVisible(true);
     }
 
     // MODIFIES: this
@@ -76,57 +77,57 @@ public class AppFrame extends JFrame implements ActionListener {
     // EFFECTS: initializes the Add Champion button
     private void initAddButton() {
         addChampion = new JButton("Add Champion");
+        this.add(addChampion);
         addChampion.setBounds(0, 0, 200, 250);
         addChampion.addActionListener(this);
         addChampion.setBackground(new Color(0xE74646));
         addChampion.setFocusable(false);
-        this.add(addChampion);
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the Remove Champion button
     private void initRemoveButton() {
         removeChampion = new JButton("Remove Champion");
+        this.add(removeChampion);
         removeChampion.setBounds(200,0,200,250);
         removeChampion.addActionListener(this);
         removeChampion.setBackground(new Color(0xE0D849));
-        addChampion.setFocusable(false);
-        this.add(removeChampion);
+        removeChampion.setFocusable(false);
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the Save button
     private void initSaveButton() {
         saveInfo = new JButton("Save");
+        this.add(saveInfo);
         saveInfo.setBounds(400, 0, 200, 250);
         saveInfo.addActionListener(this);
         saveInfo.setBackground(new Color(0x7E7ED5));
         saveInfo.setFocusable(false);
-        this.add(saveInfo);
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the Load button
     private void initLoadButton() {
         loadInfo = new JButton("Load");
+        this.add(loadInfo);
         loadInfo.setBounds(600, 0, 200, 250);
         loadInfo.addActionListener(this);
         loadInfo.setBackground(new Color(0xF372F3));
         loadInfo.setFocusable(false);
-        this.add(loadInfo);
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the current Save Status
     private void initStatus() {
         savedStatusInfo = new JPanel();
+        savedStatus = new JLabel();
+        savedStatusInfo.setLayout(new BorderLayout());
+        savedStatusInfo.add(savedStatus);
         this.add(savedStatusInfo);
+        setSavedStatus();
         savedStatusInfo.setBounds(800,0,200,250);
         savedStatusInfo.setBackground(new Color(0xD2D2D2));
-        savedStatusInfo.setLayout(new BorderLayout());
-        savedStatus = new JLabel();
-        savedStatusInfo.add(savedStatus);
-        setSavedStatus();
     }
 
     // MODIFIES: this
