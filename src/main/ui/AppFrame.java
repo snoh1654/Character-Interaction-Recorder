@@ -40,6 +40,7 @@ public class AppFrame extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setLayout(null);
         this.setSize(1000, 1000);
+        this.setResizable(false);
 
         initComponents();
     }
@@ -68,7 +69,9 @@ public class AppFrame extends JFrame implements ActionListener {
         scrollPane.setBounds(0,250, 1000, 800);
         scrollPane.setBackground(new Color(0x735DD0));
         this.add(scrollPane);
+        table.setEnabled(false);
     }
+
     // MODIFIES: this
     // EFFECTS: initializes the Add Champion button
     private void initAddButton() {
