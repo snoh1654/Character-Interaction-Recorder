@@ -20,6 +20,8 @@ public class ChampionCollection implements JsonCreator {
     // EFFECTS: adds a new champion that the user can learn about to the collection
     public void addChampion(Champion champion) {
         this.championsGuide.add(champion);
+        EventLog.getInstance().logEvent(new Event("Added " + champion.getName()
+                + " to the Champion Collection"));
     }
 
     // MODIFIES: this
@@ -28,6 +30,8 @@ public class ChampionCollection implements JsonCreator {
     public String removeChampion(String championName) {
         for (int i = 0; i < this.championsGuide.size(); i++) {
             if (this.championsGuide.get(i).getName().equals(championName)) {
+                EventLog.getInstance().logEvent(new Event("Removed Champion "
+                        + this.championsGuide.get(i).getName() + " from the Champion Collection."));
                 this.championsGuide.remove(i);
                 return "Removed the Champion.";
             }

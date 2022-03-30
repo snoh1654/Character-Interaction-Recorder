@@ -1,8 +1,6 @@
 package ui;
 
-import model.Champion;
-import model.ChampionCollection;
-import model.OpposingChampion;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -42,7 +40,11 @@ public class ChampionsGuideApp {
                 processCommand(command);
             }
         }
-        System.out.println("\n Program Closed.");
+        System.out.println("\nProgram Closed.");
+
+        for (Event next : EventLog.getInstance()) {
+            System.out.println("\n" + next);
+        }
     }
 
     // MODIFIES: this

@@ -40,3 +40,13 @@ the user to edit their own information would be very helpful to me and some of m
 - As a user, I want to be able to see a visual of all the champions that I added to my collection
 - As a user, I want to be able to save my collection of champion information
 - As a user, I want to be able to load my previous collection of champion information
+
+## Phase 4: Task 2
+Wed Mar 30 00:29:15 PDT 2022    
+Added Sean to the Champion Collection
+
+Wed Mar 30 00:29:19 PDT 2022    
+Added Sean2 to the Champion Collection
+
+Wed Mar 30 00:29:22 PDT 2022    
+Removed Champion Sean2 from the Champion Collection.

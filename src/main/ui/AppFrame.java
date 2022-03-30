@@ -2,6 +2,8 @@ package ui;
 
 import model.Champion;
 import model.ChampionCollection;
+import model.Event;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -39,7 +41,14 @@ public class AppFrame extends JFrame implements ActionListener {
 
         initComponents();
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                for (Event next : EventLog.getInstance()) {
+                    System.out.println("\n" + next);
+                }
+                System.exit(0);
+            }
+        });
         this.setLayout(null);
         this.setSize(1000, 1000);
         this.setResizable(false);
