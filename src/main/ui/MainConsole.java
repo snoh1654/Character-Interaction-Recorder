@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 public class MainConsole {
     public static void main(String[] args) {
         try {
-            new ChampionsGuideApp();
+            new ChampionsGuideConsole();
         } catch (FileNotFoundException e) {
             System.out.println("Error. File location cannot be found.");
         }

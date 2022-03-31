@@ -50,3 +50,25 @@ Added Sean2 to the Champion Collection
 
 Wed Mar 30 00:29:22 PDT 2022    
 Removed Champion Sean2 from the Champion Collection.
+
+## Phase 4: Task 3
+- I would refactor the classes in the model package to use exceptions rather than a "requires" specification. 
+Specifically, I would create exceptions such as "ChampionDoesNotExistException," "OutOfDifficultyRangeException," and 
+"AlreadyInCollectionException" to indicate errors in the code and increase its robustness.
+
+
+- I would also refactor my code to reduce coupling within the classes in the model
+package. As of now, there is a high level of coupling present between the ChampionCollection, Champion, and
+OpposingChampion class. As of now, I learned the observer and composite design patterns in CPSC 210 and these two
+ideas are not really applicable to these classes. Therefore, if I had more time, I would research other design
+principles that could reduce the model package's coupling.
+
+
+- I would also try to create an abstract class that Champion and OpposingChampion could implement. I believe that these 
+two classes are very similar, so extending an abstract class could help group their related behaviour.
+
+
+- Finally, with more time, I would refactor the AppFrame class to make my JFrame more efficient. Currently, I am certain
+that I am not utilizing some of Swing's methods that could be useful for my GUI. For some sections of AppFrame, 
+specifically the loading feature and button placements, I had to brute force the features. Therefore, I am
+fairly certain that Java offered methods that have these functionalities, but I simply could not find them.

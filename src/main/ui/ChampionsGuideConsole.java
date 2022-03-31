@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 // Application containing information about Champions from League of Legends
-public class ChampionsGuideApp {
+public class ChampionsGuideConsole {
     private static final String JSON_LOCATION = "./data/championsGuide.json";
 
     private Scanner input;
@@ -18,7 +18,7 @@ public class ChampionsGuideApp {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the Champions Guide application
-    public ChampionsGuideApp() throws FileNotFoundException {
+    public ChampionsGuideConsole() throws FileNotFoundException {
         runChampionGuide();
     }
 
