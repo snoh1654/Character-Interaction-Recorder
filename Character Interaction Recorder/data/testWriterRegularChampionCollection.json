@@ -1,0 +1,10 @@
+{"Champions Guide": [{
+    "Difficulty": 4,
+    "Champion Name": "Test Champion",
+    "Champion Information": "Test!",
+    "Interaction With Other Champions": [{
+        "Opposing Champion Name": "Opposing Champion",
+        "Difficulty To Play Against": 6,
+        "Interaction Detail": "Testing!"
+    }]
+}]}
